@@ -1,3 +1,4 @@
+#Efficiency of design used by Leaker et al. (2017) with p=3, t=3 and n=18 with sigma_1^2/sigma_2^2=0.001
 library(MASS)
 library(pracma)
 
@@ -134,4 +135,5 @@ min(Example_Equi_Tri_ratio_tooless_1$Efficiency) #Minimum efficiency
 
 
 max(Example_Equi_Tri_ratio_tooless_1$Efficiency) #Maximum efficiency
+
 
