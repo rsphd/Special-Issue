@@ -1,3 +1,4 @@
+#Efficiency of Uniform on periods design with p=4, t=5 and n=20 with sigma_1^2/sigma_2^2=100
 library(MASS)
 library(pracma)
 
@@ -136,5 +137,6 @@ p4t5_UniformPeriods_Equi_Tri_ratio_toogreater_1=read_excel("D:/Special Issue/p4t
 min(p4t5_UniformPeriods_Equi_Tri_ratio_toogreater_1$Efficiency) #Minimum efficiency
 
 max(p4t5_UniformPeriods_Equi_Tri_ratio_toogreater_1$Efficiency) #Maximum efficiency
+
 
 
