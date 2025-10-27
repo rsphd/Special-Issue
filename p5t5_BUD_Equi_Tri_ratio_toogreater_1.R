@@ -1,3 +1,4 @@
+#Efficiency of Balanced Uniform design with p=5, t=5 and n=20 with sigma_1^2/sigma_2^2=100
 library(MASS)
 library(pracma)
 
@@ -137,3 +138,4 @@ min(p5t5_BUD_Equi_Tri_ratio_toogreater_1$Efficiency) #Minimum efficiency
 
 
 max(p5t5_BUD_Equi_Tri_ratio_toogreater_1$Efficiency) #Maximum efficiency
+
