@@ -1,3 +1,4 @@
+#Efficiency of Uniform on periods design with p=3, t=4 and n=12 with sigma_1^2/sigma_2^2=100
 library(MASS)
 library(pracma)
 
@@ -129,4 +130,5 @@ min(p3t4_UniformPeriods_Equi_Tri_ratio_toogreater_1$Efficiency) #Minimum efficie
 
 
 max(p3t4_UniformPeriods_Equi_Tri_ratio_toogreater_1$Efficiency) #Maximum efficiency
+
 
