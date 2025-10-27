@@ -1,3 +1,4 @@
+#Efficiency of Balanced Uniform design with p=4, t=4 and n=12 with sigma_1^2/sigma_2^2=0.001
 library(MASS)
 library(pracma)
 
@@ -128,5 +129,6 @@ p4t4_BUD_Equi_Tri_ratio_tooless_1=read_excel("D:/Special Issue/p4t4_BUD_Equi_Tri
 min(p4t4_BUD_Equi_Tri_ratio_tooless_1$Efficiency) #Minimum efficiency
 
 max(p4t4_BUD_Equi_Tri_ratio_tooless_1$Efficiency) #Maximum efficiency
+
 
 
