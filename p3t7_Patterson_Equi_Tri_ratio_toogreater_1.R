@@ -74,20 +74,20 @@ H_t=I_t-J_t/t
 #Incidence matrix of period versus carryover effect
 F_d=kronecker(I_n,psi)%*%T_d
 
-#Vector containing various values of r1
+#Vector containing various values of r_(1)
 r1=c(seq(-0.49,-0.01,0.01), seq(0.01,0.70,0.01))
 
 Nr=c()
 Dr=c()
 efficiency=c()
 
-#For loop to evaluate the efficiency of binary design at various values of r1 
+#For loop to evaluate the efficiency of binary design at various values of r_(1) 
 for(i in 1:length(r1))
 {
   V_1=matrix(c(1,r1[i],r1[i],r1[i],1,r1[i],r1[i],r1[i],1),nrow=p,ncol=p,byrow=T)
   V_2=matrix(c(1,r1[i],0,r1[i],1,r1[i],0,r1[i],1),nrow=p,ncol=p,byrow=T)
   
-  x=100
+  x=100 #sigma_1^2/sigma_2^2
   
   delta_1=1/sum(rowSums(solve(V_1)))
   V_1_star=solve(V_1)-delta_1*solve(V_1)%*%J_p%*%solve(V_1)
@@ -158,5 +158,6 @@ p3t7_Patterson_Equi_Tri_ratio_toogreater_1=read_excel("D:/Special Issue/p3t7_Pat
 min(p3t7_Patterson_Equi_Tri_ratio_toogreater_1$Efficiency) #Minimum efficiency
 
 max(p3t7_Patterson_Equi_Tri_ratio_toogreater_1$Efficiency) #Maximum efficiency
+
 
 
