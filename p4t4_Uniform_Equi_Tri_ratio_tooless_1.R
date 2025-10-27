@@ -1,10 +1,12 @@
 library(MASS)
 library(pracma)
 
+#p: Number of periods, t: Number of treatments, n: Number of subjects
 p=4
 t=4
 n=12
 
+#Incidence matrix of period versus direct treatment effect for each subject
 T_d1=matrix(c(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1),nrow=p,ncol=t,byrow=T)
 T_d2=matrix(c(0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0),nrow=p,ncol=t,byrow=T)
 T_d3=matrix(c(0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0),nrow=p,ncol=t,byrow=T)
@@ -18,16 +20,20 @@ T_d10=matrix(c(0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0),nrow=p,ncol=t,byr
 T_d11=matrix(c(0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0),nrow=p,ncol=t,byrow=T)
 T_d12=matrix(c(0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0),nrow=p,ncol=t,byrow=T)
 
+#Combining period versus direct treatment effect incidence matrices for all subjects
 T_d=rbind(T_d1, T_d2, T_d3, T_d4, T_d5, T_d6, T_d7, T_d8, T_d9, T_d10, T_d11, T_d12)
 
+#Incidence matrix of period versus direct treatment effect for the first subject for orthogonal array design of Type I and strength 2 
 T_d_ortho_1=matrix(c(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1),nrow=p,ncol=t,byrow=T)
 
 psi=matrix(c(0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0),nrow=p,ncol=p,byrow=T)
 
+#Identity matrices of dimension pxp, nxn and txt
 I_p=diag(p)
 I_n=diag(n)
 I_t=diag(t)
 
+#pxp, nxn and txt matrices with all elements as 1
 J_p=matrix(rep(1,p^2),nrow=p,ncol=p,byrow=T)
 J_n=matrix(rep(1,n^2),nrow=n,ncol=n,byrow=T)
 J_t=matrix(rep(1,t^2),nrow=t,ncol=t,byrow=T)
@@ -35,20 +41,23 @@ J_t=matrix(rep(1,t^2),nrow=t,ncol=t,byrow=T)
 H_n=I_n-J_n/n
 H_t=I_t-J_t/t
 
+#Incidence matrix of period versus carryover effect
 F_d=kronecker(I_n,psi)%*%T_d
 
+#Vector containing various values of r_(1)
 r1=c(seq(-0.33,-0.01,0.01), seq(0.01,0.61,0.01))
 
 Nr=c()
 Dr=c()
 efficiency=c()
 
+#For loop to evaluate the efficiency of binary design at various values of r_(1) 
 for(i in 1:length(r1))
 {
   V_1=matrix(c(1, r1[i], r1[i], r1[i], r1[i], 1, r1[i], r1[i], r1[i], r1[i], 1, r1[i], r1[i], r1[i], r1[i], 1),nrow=p,ncol=p,byrow=T)
   V_2=matrix(c(1, r1[i], 0, 0, r1[i], 1, r1[i], 0, 0, r1[i], 1, r1[i], 0, 0, r1[i], 1),nrow=p,ncol=p,byrow=T)
   
-  x=0.001
+  x=0.001 #sigma_1^2/sigma_2^2
   
   delta_1=1/sum(rowSums(solve(V_1)))
   V_1_star=solve(V_1)-delta_1*solve(V_1)%*%J_p%*%solve(V_1)
@@ -119,4 +128,5 @@ p4t4_Uniform_Equi_Tri_ratio_tooless_1=read_excel("D:/Special Issue/p4t4_Uniform_
 min(p4t4_Uniform_Equi_Tri_ratio_tooless_1$Efficiency) #Minimum efficiency
 
 max(p4t4_Uniform_Equi_Tri_ratio_tooless_1$Efficiency) #Maximum efficiency
+
 
