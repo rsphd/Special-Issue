@@ -1,10 +1,12 @@
 library(MASS)
 library(pracma)
 
+#p: Number of periods, t: Number of treatments, n: Number of subjects
 p=3
 t=5
 n=20
 
+#Incidence matrix of period versus direct treatment effect for each subject
 T_d1=matrix(c(1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0),nrow=p,ncol=t,byrow=T)
 T_d2=matrix(c(0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0),nrow=p,ncol=t,byrow=T)
 T_d3=matrix(c(0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1),nrow=p,ncol=t,byrow=T)
@@ -26,17 +28,20 @@ T_d18=matrix(c(0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1),nrow=p,ncol=t,byrow=
 T_d19=matrix(c(0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0),nrow=p,ncol=t,byrow=T)
 T_d20=matrix(c(0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0),nrow=p,ncol=t,byrow=T)
 
-
+#Combining period versus direct treatment effect incidence matrices for all subjects
 T_d=rbind(T_d1, T_d2, T_d3, T_d4, T_d5, T_d6, T_d7, T_d8, T_d9, T_d10, T_d11, T_d12, T_d13, T_d14, T_d15, T_d16, T_d17, T_d18, T_d19, T_d20)
 
+#Incidence matrix of period versus direct treatment effect for the first subject for orthogonal array design of Type I and strength 2 
 T_d_ortho_1=matrix(c(1,0,0,0,0,0,1,0,0,0,0,0,1,0,0),nrow=p,ncol=t,byrow=T)
 
 psi=matrix(c(0, 0, 0, 1, 0, 0, 0, 1, 0),nrow=p,ncol=p,byrow=T)
 
+#Identity matrices of dimension pxp, nxn and txt
 I_p=diag(p)
 I_n=diag(n)
 I_t=diag(t)
 
+#pxp, nxn and txt matrices with all elements as 1
 J_p=matrix(rep(1,p^2),nrow=p,ncol=p,byrow=T)
 J_n=matrix(rep(1,n^2),nrow=n,ncol=n,byrow=T)
 J_t=matrix(rep(1,t^2),nrow=t,ncol=t,byrow=T)
@@ -44,14 +49,17 @@ J_t=matrix(rep(1,t^2),nrow=t,ncol=t,byrow=T)
 H_n=I_n-J_n/n
 H_t=I_t-J_t/t
 
+#Incidence matrix of period versus carryover effect
 F_d=kronecker(I_n,psi)%*%T_d
 
+#Vector containing various values of r1
 r1=c(seq(-0.49,-0.01,0.01), seq(0.01,0.70,0.01))
 
 Nr=c()
 Dr=c()
 efficiency=c()
 
+#For loop to evaluate the efficiency of binary design at various values of r1 
 for(i in 1:length(r1))
 {
   V_1=matrix(c(1,r1[i],r1[i],r1[i],1,r1[i],r1[i],r1[i],1),nrow=p,ncol=p,byrow=T)
@@ -128,4 +136,5 @@ p3t5_UniformPeriods_Equi_Tri_ratio_toogreater_1=read_excel("D:/Special Issue/p3t
 min(p3t5_UniformPeriods_Equi_Tri_ratio_toogreater_1$Efficiency) #Minimum efficiency
 
 max(p3t5_UniformPeriods_Equi_Tri_ratio_toogreater_1$Efficiency) #Maximum efficiency
+
 
