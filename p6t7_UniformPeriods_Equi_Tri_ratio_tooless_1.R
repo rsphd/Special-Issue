@@ -1,3 +1,4 @@
+#Efficiency of Uniform on periods design with p=6, t=7 and n=42 with sigma_1^2/sigma_2^2=0.001
 library(MASS)
 library(pracma)
 
@@ -158,4 +159,5 @@ p6t7_UniformPeriods_Equi_Tri_ratio_tooless_1=read_excel("D:/Special Issue/p6t7_U
 min(p6t7_UniformPeriods_Equi_Tri_ratio_tooless_1$Efficiency) #Minimum efficiency
 
 max(p6t7_UniformPeriods_Equi_Tri_ratio_tooless_1$Efficiency) #Maximum efficiency
+
 
