@@ -1,3 +1,4 @@
+#Efficiency of Patterson design with p=3, t=7 and n=42 with sigma_1^2/sigma_2^2=100
 library(MASS)
 library(pracma)
 
@@ -158,6 +159,7 @@ p3t7_Patterson_Equi_Tri_ratio_toogreater_1=read_excel("D:/Special Issue/p3t7_Pat
 min(p3t7_Patterson_Equi_Tri_ratio_toogreater_1$Efficiency) #Minimum efficiency
 
 max(p3t7_Patterson_Equi_Tri_ratio_toogreater_1$Efficiency) #Maximum efficiency
+
 
 
 
